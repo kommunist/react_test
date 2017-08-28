@@ -9,6 +9,6 @@
   "author": "Maxim Patsianskiy",
   "license": "MIT",
   "devDependencies": {
-    "express": "^4.13.4"
+    "express": "^4.15.4"
   }
 }
