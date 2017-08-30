@@ -1,39 +1,41 @@
 var main = function() {
-  var color = function(){
-    if (((Math.random() * 10) & 1) == 1){
-      return 'orange'
-    }else{
-      return 'black'
+
+  var Cell = React.createClass({
+    getInitialState: function(){
+      return { style: { backgroundColor: 'black' } }
+    },
+    changeColor: function(){
+      if (this.state.style.backgroundColor == 'black'){
+        this.setState({ style: {backgroundColor: 'orange'} })
+      }else{
+        this.setState({ style: {backgroundColor: 'black'} })
+      }
+    },
+    render: function(){
+      return (
+        <td style={{ backgroundColor: this.state.style.backgroundColor }} onClick={ this.changeColor }>!</td>
+      )
     }
-  }
+  })
+
   var init_table = function(size) {
     var array = [];
     for (var j = 0; j < size; j++) {
       array[j] = []
       for (var i = 0; i < size; i++) {
-        array[j].push(
-          React.createElement('td', {
-            style: {
-              backgroundColor: color()
-            },
-            'data-test': '123'
-          }, '.')
-        )
+        array[j].push(<Cell />)
       }
     }
     return array;
   }
-  var loop = function(){
-    var trs = []
-    init_table(10).forEach(function(curr){
-      trs.push(React.createElement('tr', null, ...curr))
-    })
-    ReactDOM.render(
-      React.createElement('tbody', null, ...trs),
-      document.getElementById('root')
-    )
-    setTimeout(loop, 300)
-  }
-  loop()
+
+  var trs = []
+  init_table(10).forEach(function(curr){
+    trs.push(React.createElement('tr', null, ...curr))
+  })
+  ReactDOM.render(
+    React.createElement('tbody', null, ...trs),
+    document.getElementById('root')
+  )
 }
 main()
