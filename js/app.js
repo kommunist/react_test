@@ -32,7 +32,6 @@ var News = React.createClass({
           К сожалению, новостей нет.
         </div>
     }
-    console.log(news)
     return (
       <div className="news">
         {news}
@@ -41,23 +40,26 @@ var News = React.createClass({
   }
 })
 
-var Comments = React.createClass({
-  render: function() {
+var Article = React.createClass({
+  render: function(){
+    var author = this.props.data.author,
+        text = this.props.data.text;
     return (
-      <div className="comments">
-        Нет новостей - комментировать нечего
+      <div className='article'>
+        <p className="news__author">{author}:</p>
+        <p className="news__text">{text}</p>
       </div>
-    );
+    )
   }
-});
+})
 
 var App = React.createClass({
   render: function() {
     return (
       <div className="app">
-        Всем привет, я компонент App!
+        <h3>Новости</h3>
         <News data = {my_news}/>
-        <Comments />
+        <Article data = {{author: '123', text: '345'}}/>
       </div>
     );
   }
