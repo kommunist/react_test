@@ -5,25 +5,16 @@ var main = function() {
       return { style: { backgroundColor: 'black' } }
     },
     changeColor: function(){
-      if (this.props.left.state.style.backgroundColor == 'orange'){
-        this.setState({ style: {backgroundColor: 'green'} })
+      if (this.state.style.backgroundColor == 'black'){
+        this.setState({ style: {backgroundColor: 'orange'} })
       }else{
-        if (this.state.style.backgroundColor == 'black'){
-          this.setState({ style: {backgroundColor: 'orange'} })
-        }else{
-          this.setState({ style: {backgroundColor: 'black'} })
-        }
+        this.setState({ style: {backgroundColor: 'black'} })
       }
     },
     render: function(){
       return (
         <td style={{ backgroundColor: this.state.style.backgroundColor }} onClick={ this.changeColor }>!</td>
       )
-    },
-    statics:{
-      cons: function(){
-        console.log(123)
-      }
     }
   })
 
@@ -32,19 +23,20 @@ var main = function() {
     for (var j = 0; j < size; j++) {
       array[j] = []
       for (var i = 0; i < size; i++) {
-        array[j].push(<Cell left={array[j][array.length - 2]}/>)
+        array[j].push(
+          <Cell left={array[j][array[j].length - 1]}/>
+        )
       }
     }
     return array;
   }
 
   var trs = []
-  init_table(5).forEach(function(curr){
+  init_table(3).forEach(function(curr){
     trs.push(
       React.createElement('tr', null, ...curr)
     )
   })
-
 
   ReactDOM.render(
     React.createElement('tbody', null, ...trs),
