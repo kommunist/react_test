@@ -5,6 +5,7 @@ var main = function() {
       return { style: { backgroundColor: 'black' } }
     },
     changeColor: function(){
+      console.log(this.props.left)
       if (this.state.style.backgroundColor == 'black'){
         this.setState({ style: {backgroundColor: 'orange'} })
       }else{
@@ -15,6 +16,21 @@ var main = function() {
       return (
         <td style={{ backgroundColor: this.state.style.backgroundColor }} onClick={ this.changeColor }>!</td>
       )
+    }
+  })
+
+  var Board = React.createClass({
+    getInitialState: function(){
+      var array = [];
+      for (var j = 0; j < size; j++) {
+        array[j] = []
+        for (var i = 0; i < size; i++) {
+          array[j].push(0)
+        }
+      }
+    }
+    render: function(){
+      
     }
   })
 
