@@ -22,8 +22,8 @@ var main = function() {
     render: function(){
       return (
         <td
-        style={{ backgroundColor: numerToColor(this.state.style) }}
-        onClick = {this.manualChangeColor} >!</td>
+        style={ { backgroundColor: numerToColor(this.state.style) } }
+        onClick = {this.manualChangeColor} ></td>
       )
     }
   })
@@ -34,7 +34,7 @@ var main = function() {
       // здесь нужно изменить состояние матрицы
     },
     getInitialState: function(){
-      var size = 10;
+      var size = 50;
       var array = [];
       for (var j = 0; j < size; j++) {
         array[j] = []
