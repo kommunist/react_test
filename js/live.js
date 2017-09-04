@@ -34,7 +34,7 @@ var main = function() {
       // здесь нужно изменить состояние матрицы
     },
     getInitialState: function(){
-      var size = 50;
+      var size = 100;
       var array = [];
       for (var j = 0; j < size; j++) {
         array[j] = []
