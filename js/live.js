@@ -14,9 +14,12 @@ var main = function() {
         this.setState({ style: {backgroundColor: 'black'} })
       }
     },
+    handleCell: function(){
+      this.props.handleCell()
+    },
     render: function(){
       return (
-        <td style={{ backgroundColor: this.state.style.backgroundColor }} onClick = {this.props.onCliF} >!</td>
+        <td style={{ backgroundColor: this.state.style.backgroundColor }} onClick = {this.handleCell} >!</td>
       )
     }
   })
@@ -33,14 +36,19 @@ var main = function() {
       }
       return {arr: array}
     },
+    handleCell: function(){
+      return console.log(this.state)
+    },
     render: function(){
-      var cons_func = function(){ console.log(arr) }
+      var h = this.handleCell
       var trs = this.state.arr.map(function(arr_line, i){
         var tds = []
         tds = arr_line.map(function(td_arr, j){
           var color = td_arr == 0 ? 'black' : 'orange'
           return(
-            <Cell key = {concatKeys(i, j)} onCliF = { cons_func }/>
+            <Cell
+            key = {concatKeys(i, j)}
+            handleCell = { h }/>
           )
         })
         return(
@@ -59,6 +67,7 @@ var main = function() {
         </tbody>
       )
     }
+
   })
 
   ReactDOM.render(
