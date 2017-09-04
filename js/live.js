@@ -8,25 +8,21 @@ var main = function() {
   }
 
   var Cell = React.createClass({
+    getInitialState: function(){
+      return {style: this.props.color}
+    },
+    changeColor: function(){
+      if (this.state.style == 1){ this.setState({ style: 0 })}
+      else{ this.setState({ style: 1 }) }
+    },
     manualChangeColor: function(){
       this.props.manualChangeColorFunction()
+      this.changeColor()
     },
-
-    // changeColor: function(){
-    //   if (this.state.style.backgroundColor == 'black'){
-    //     this.setState({ style: {backgroundColor: 'orange'} })
-    //   }else{
-    //     this.setState({ style: {backgroundColor: 'black'} })
-    //   }
-    // },
-
-    //  как поменять цвет?
-
-
     render: function(){
       return (
         <td
-        style={{ backgroundColor: numerToColor(this.props.color) }}
+        style={{ backgroundColor: numerToColor(this.state.style) }}
         onClick = {this.manualChangeColor} >!</td>
       )
     }
@@ -34,6 +30,7 @@ var main = function() {
 
   var Board = React.createClass({
     manualChangeColor: function(first, second){
+      console.log(123)
       // здесь нужно изменить состояние матрицы
     },
     getInitialState: function(){
