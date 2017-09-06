@@ -59,10 +59,8 @@ var main = function() {
         ].reduce(function(accum, curr){ return accum + curr })
         return result
       }
-
-      var trs = []
-      this.state.arr.map(function(el, i){
-        trs.push(
+      var trs = this.state.arr.map(function(el, i){
+        return (
           el.map(function(m, j){
             var result = check_others(i, j, size)
             if (c_arr[i][j] == 0){
@@ -76,11 +74,22 @@ var main = function() {
       this.setState({arr: trs})
       setTimeout(this.start_loop, 10)
     },
+    fill: function(numer){
+      var trs = this.state.arr.map(function(el, i){
+        return el.map(function(m, j){ return numer })
+      })
+      this.setState({arr: trs})
+    },
+    clean: function(){
+      this.fill(0)
+    },
+    full: function(){
+      this.fill(1)
+    },
     render: function(){
       var manualChangeColorFunction = this.manualChangeColor
       var trs = this.state.arr.map(function(arr_line, i){
-        var tds = []
-        tds = arr_line.map(function(td_arr, j){
+        var tds = arr_line.map(function(td_arr, j){
           return( <Cell
                    key = { concatKeys(i, j) }
                    color = { td_arr }
@@ -98,6 +107,8 @@ var main = function() {
             </tbody>
           </table>
           <button onClick={ this.start_loop }>Старт</button>
+          <button onClick={ this.clean }>Очистить</button>
+          <button onClick={ this.full }>Забить</button>
         </div>
       )
     }
